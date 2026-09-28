@@ -5,26 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Economics Explore | A-Level Economics Hub</title>
   <style>
-    /* --- Wintery Grey Theme --- */
     :root {
-      --bg-primary: #2b2d31;
-      --bg-secondary: #36393f;
-      --bg-tertiary: #40444b;
-      --bg-hover: #4a4d55;
-      --text-primary: #e4e6eb;
-      --text-secondary: #b0b3b8;
-      --text-muted: #8a8d91;
-      --accent: #8ab4f8;
-      --accent-hover: #a4c8ff;
-      --border: #4a4d55;
-      --shadow: rgba(0, 0, 0, 0.3);
+      --bg-primary: #f4f6f8;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #eef1f5;
+      --bg-hover: #e6eaf0;
+      --text-primary: #1f2933;
+      --text-secondary: #5a6470;
+      --text-muted: #8a939e;
+      --accent: #3b6fd4;
+      --accent-hover: #2b5cbb;
+      --border: #e1e5ea;
+      --border-strong: #cdd3db;
+      --shadow-sm: 0 1px 3px rgba(31, 41, 51, 0.06);
+      --shadow-md: 0 4px 14px rgba(31, 41, 51, 0.08);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -36,14 +33,13 @@
       flex-direction: column;
     }
 
-    /* --- Navigation --- */
     nav {
-      background: var(--bg-secondary);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
     }
 
     .nav-container {
@@ -67,9 +63,7 @@
       gap: 0.5rem;
     }
 
-    .logo span {
-      color: var(--accent);
-    }
+    .logo span { color: var(--accent); }
 
     .nav-links {
       display: flex;
@@ -87,13 +81,16 @@
       transition: all 0.2s;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       color: var(--text-primary);
-      background: var(--bg-hover);
+      background: var(--bg-tertiary);
     }
 
-    /* --- Main Content --- */
+    .nav-links a.active {
+      color: var(--accent);
+      background: rgba(59, 111, 212, 0.08);
+    }
+
     main {
       flex: 1;
       max-width: 1200px;
@@ -102,30 +99,22 @@
       padding: 2.5rem 1.5rem;
     }
 
-    /* --- Page Sections (SPA-style tabs) --- */
-    .page {
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .page.active {
-      display: block;
-    }
+    .page { display: none; animation: fadeIn 0.3s ease; }
+    .page.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .page-header {
-      margin-bottom: 2rem;
-    }
+    .page-header { margin-bottom: 2rem; }
 
     .page-header h1 {
       font-size: 2rem;
       font-weight: 700;
       letter-spacing: -0.5px;
       margin-bottom: 0.25rem;
+      color: var(--text-primary);
     }
 
     .page-header p {
@@ -133,33 +122,28 @@
       font-size: 1rem;
     }
 
-    /* --- Search Bars --- */
-    .search-container {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
+    .search-container { position: relative; margin-bottom: 1.5rem; }
 
     .search-container input {
       width: 100%;
       padding: 0.875rem 1rem 0.875rem 2.75rem;
       background: var(--bg-secondary);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       border-radius: 8px;
       color: var(--text-primary);
       font-size: 0.95rem;
       font-family: inherit;
       transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
+      box-shadow: var(--shadow-sm);
     }
 
     .search-container input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(138, 180, 248, 0.15);
+      box-shadow: 0 0 0 3px rgba(59, 111, 212, 0.12);
     }
 
-    .search-container input::placeholder {
-      color: var(--text-muted);
-    }
+    .search-container input::placeholder { color: var(--text-muted); }
 
     .search-icon {
       position: absolute;
@@ -170,20 +154,20 @@
       pointer-events: none;
     }
 
-    /* --- Blog Entries --- */
     .blog-entry {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 1.25rem 1.5rem;
       margin-bottom: 0.75rem;
-      transition: border-color 0.2s, background 0.2s;
-      cursor: default;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: var(--shadow-sm);
     }
 
     .blog-entry:hover {
       border-color: var(--accent);
-      background: var(--bg-tertiary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
     .blog-entry-header {
@@ -201,8 +185,16 @@
       margin-bottom: 0.25rem;
     }
 
+    .blog-entry h3 a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .blog-entry h3 a:hover { color: var(--accent); }
+
     .blog-entry h3 mark {
-      background: rgba(138, 180, 248, 0.3);
+      background: rgba(59, 111, 212, 0.18);
       color: var(--accent);
       padding: 0.1em 0.2em;
       border-radius: 3px;
@@ -229,25 +221,27 @@
       font-size: 0.95rem;
     }
 
-    /* --- Case Studies --- */
     .case-study {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 1.25rem 1.5rem;
       margin-bottom: 0.75rem;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: var(--shadow-sm);
     }
 
     .case-study:hover {
       border-color: var(--accent);
-      background: var(--bg-tertiary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
     .case-study h3 {
       font-size: 1.05rem;
       font-weight: 600;
       margin-bottom: 0.25rem;
+      color: var(--text-primary);
     }
 
     .case-study .category {
@@ -257,7 +251,7 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--accent);
-      background: rgba(138, 180, 248, 0.1);
+      background: rgba(59, 111, 212, 0.1);
       padding: 0.2rem 0.6rem;
       border-radius: 4px;
       margin-bottom: 0.5rem;
@@ -269,22 +263,22 @@
       line-height: 1.6;
     }
 
-    /* --- Statistics Table --- */
-    .stats-section {
-      margin-top: 2rem;
-    }
+    .stats-section { margin-top: 2rem; }
 
     .stats-section h2 {
       font-size: 1.4rem;
       font-weight: 700;
       margin-bottom: 1rem;
       letter-spacing: -0.3px;
+      color: var(--text-primary);
     }
 
     .stats-table-wrapper {
       overflow-x: auto;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      box-shadow: var(--shadow-sm);
     }
 
     .stats-table {
@@ -296,8 +290,6 @@
 
     .stats-table thead {
       background: var(--bg-tertiary);
-      position: sticky;
-      top: 0;
     }
 
     .stats-table th {
@@ -315,15 +307,11 @@
       padding: 0.65rem 1rem;
       border-bottom: 1px solid var(--border);
       color: var(--text-secondary);
+      background: var(--bg-secondary);
     }
 
-    .stats-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    .stats-table tbody tr:hover {
-      background: var(--bg-hover);
-    }
+    .stats-table tbody tr:last-child td { border-bottom: none; }
+    .stats-table tbody tr:hover td { background: var(--bg-tertiary); }
 
     .stats-table td:first-child {
       color: var(--text-primary);
@@ -347,7 +335,7 @@
     .stats-tab {
       padding: 0.5rem 1rem;
       background: var(--bg-secondary);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       border-radius: 6px;
       color: var(--text-secondary);
       font-size: 0.85rem;
@@ -355,36 +343,33 @@
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
+      box-shadow: var(--shadow-sm);
     }
 
     .stats-tab:hover {
-      background: var(--bg-hover);
+      background: var(--bg-tertiary);
       color: var(--text-primary);
     }
 
     .stats-tab.active {
       background: var(--accent);
-      color: var(--bg-primary);
+      color: #ffffff;
       border-color: var(--accent);
       font-weight: 600;
+      box-shadow: 0 4px 12px rgba(59, 111, 212, 0.25);
     }
 
-    /* --- Footer --- */
     footer {
       text-align: center;
       padding: 2rem 1.5rem;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
+      background: #2b2d31;
+      color: #b0b3b8;
       font-size: 0.85rem;
       margin-top: auto;
     }
 
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    footer a { color: #8ab4f8; text-decoration: none; }
 
-    /* --- Responsive --- */
     @media (max-width: 768px) {
       .nav-container {
         flex-direction: column;
@@ -392,35 +377,18 @@
         padding: 0.75rem 1rem;
         gap: 0.75rem;
       }
-      .nav-links {
-        width: 100%;
-        justify-content: center;
-      }
-      .nav-links a {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.75rem;
-      }
-      main {
-        padding: 1.5rem 1rem;
-      }
-      .page-header h1 {
-        font-size: 1.5rem;
-      }
-      .blog-entry-header {
-        flex-direction: column;
-        gap: 0.25rem;
-      }
+      .nav-links { width: 100%; justify-content: center; }
+      .nav-links a { font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+      main { padding: 1.5rem 1rem; }
+      .page-header h1 { font-size: 1.5rem; }
+      .blog-entry-header { flex-direction: column; gap: 0.25rem; }
       .stats-table th,
-      .stats-table td {
-        padding: 0.5rem 0.65rem;
-        font-size: 0.78rem;
-      }
+      .stats-table td { padding: 0.5rem 0.65rem; font-size: 0.78rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav>
     <div class="nav-container">
       <a href="#" class="logo" onclick="showPage('home'); return false;">
@@ -437,7 +405,6 @@
 
   <main>
 
-    <!-- ============ HOME PAGE ============ -->
     <section class="page active" id="page-home">
       <div class="page-header">
         <h1>Welcome to Economics Explore</h1>
@@ -463,7 +430,6 @@
       </div>
     </section>
 
-    <!-- ============ BLOG PAGE ============ -->
     <section class="page" id="page-blog">
       <div class="page-header">
         <h1>Blog</h1>
@@ -478,12 +444,9 @@
         <input type="text" id="blog-search" placeholder="Search blog titles... (e.g. inflation, AI, monetary policy)" oninput="filterBlog()">
       </div>
 
-      <div id="blog-list">
-        <!-- Blog entries injected by JS -->
-      </div>
+      <div id="blog-list"></div>
     </section>
 
-    <!-- ============ CASE STUDIES PAGE ============ -->
     <section class="page" id="page-case-studies">
       <div class="page-header">
         <h1>Case Study Hub</h1>
@@ -498,12 +461,9 @@
         <input type="text" id="case-search" placeholder="Search case studies... (e.g. AI, energy, trade)" oninput="filterCases()">
       </div>
 
-      <div id="case-list">
-        <!-- Case studies injected by JS -->
-      </div>
+      <div id="case-list"></div>
     </section>
 
-    <!-- ============ STATS PAGE ============ -->
     <section class="page" id="page-stats">
       <div class="page-header">
         <h1>UK Economic Statistics</h1>
@@ -516,7 +476,6 @@
         <button class="stats-tab" onclick="showStatsTab('fiscal', this)">Fiscal & Debt</button>
       </div>
 
-      <!-- Macro Indicators Tab -->
       <div class="stats-section" id="stats-macro">
         <div class="stats-table-wrapper">
           <table class="stats-table">
@@ -529,9 +488,7 @@
                 <th>Interest Rate (%)</th>
               </tr>
             </thead>
-            <tbody id="stats-macro-body">
-              <!-- Rows injected by JS -->
-            </tbody>
+            <tbody id="stats-macro-body"></tbody>
           </table>
         </div>
         <p class="stats-note">
@@ -539,7 +496,6 @@
         </p>
       </div>
 
-      <!-- Exchange Rates Tab -->
       <div class="stats-section" id="stats-exchange" style="display: none;">
         <div class="stats-table-wrapper">
           <table class="stats-table">
@@ -551,9 +507,7 @@
                 <th>GBP / JPY</th>
               </tr>
             </thead>
-            <tbody id="stats-exchange-body">
-              <!-- Rows injected by JS -->
-            </tbody>
+            <tbody id="stats-exchange-body"></tbody>
           </table>
         </div>
         <p class="stats-note">
@@ -561,7 +515,6 @@
         </p>
       </div>
 
-      <!-- Fiscal & Debt Tab -->
       <div class="stats-section" id="stats-fiscal" style="display: none;">
         <div class="stats-table-wrapper">
           <table class="stats-table">
@@ -572,9 +525,7 @@
                 <th>Government Debt (% GDP)</th>
               </tr>
             </thead>
-            <tbody id="stats-fiscal-body">
-              <!-- Rows injected by JS -->
-            </tbody>
+            <tbody id="stats-fiscal-body"></tbody>
           </table>
         </div>
         <p class="stats-note">
@@ -591,18 +542,15 @@
   </footer>
 
   <script>
-    /* ============================================================
-       DATA: Blog Entries
-       Format: { id, title, date, excerpt }
-       ============================================================ */
     const blogEntries = [
-      
+      {
+        id: 'b1',
+        title: 'Can Trump really sell the Yosemite National Park?',
+        date: '2026-08-30',
+        excerpt: 'The Trump administration has reportedly explored ceding a strip of Yosemite to a private developer. The mechanism is a land exchange — not a sale — but the result is the same: public parkland passing into private hands.'
+      }
     ];
 
-    /* ============================================================
-       DATA: Case Studies
-       Format: { id, title, category, summary }
-       ============================================================ */
     const caseStudies = [
       {
         id: 'cs1',
@@ -630,10 +578,6 @@
       }
     ];
 
-    /* ============================================================
-       DATA: UK Economic Statistics (2007–2025)
-       Sources cited in HTML note.
-       ============================================================ */
     const statsData = {
       macro: [
         { year: 2007, inflation: 2.4, gdp: 2.9, unemployment: 5.4, interest: 5.5 },
@@ -700,9 +644,6 @@
       ]
     };
 
-    /* ============================================================
-       NAVIGATION
-       ============================================================ */
     function showPage(pageId) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
@@ -713,20 +654,15 @@
       const navLink = document.querySelector(`.nav-links a[data-page="${pageId}"]`);
       if (navLink) navLink.classList.add('active');
 
-      // Re-render dynamic content when switching to relevant pages
       if (pageId === 'blog') renderBlog();
       if (pageId === 'case-studies') renderCases();
       if (pageId === 'stats') renderStats();
     }
 
-    /* ============================================================
-       BLOG RENDERING & SEARCH
-       ============================================================ */
     function renderBlog() {
       const list = document.getElementById('blog-list');
       const query = document.getElementById('blog-search').value.trim().toLowerCase();
 
-      // Sort by date descending
       const sorted = [...blogEntries].sort((a, b) => new Date(b.date) - new Date(a.date));
 
       const filtered = sorted.filter(entry => {
@@ -735,25 +671,22 @@
       });
 
       if (filtered.length === 0) {
-        list.innerHTML = `<div class="no-results">No blog entries found matching "<strong>${escapeHtml(query)}</strong>".</div>`;
+        list.innerHTML = query
+          ? `<div class="no-results">No blog entries found matching "<strong>${escapeHtml(query)}</strong>".</div>`
+          : `<div class="no-results">No blog posts yet. Check back soon.</div>`;
         return;
       }
 
       list.innerHTML = filtered.map(entry => {
-        const titleHtml = query
-          ? highlightMatch(entry.title, query)
-          : entry.title;
-
+        const titleHtml = query ? highlightMatch(entry.title, query) : entry.title;
         const displayDate = new Date(entry.date).toLocaleDateString('en-GB', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
+          day: 'numeric', month: 'long', year: 'numeric'
         });
 
         return `
           <article class="blog-entry">
             <div class="blog-entry-header">
-              <h3>${titleHtml}</h3>
+              <h3><a href="posts/${entry.id}.html">${titleHtml}</a></h3>
               <span class="date">${displayDate}</span>
             </div>
             <p>${entry.excerpt}</p>
@@ -762,13 +695,8 @@
       }).join('');
     }
 
-    function filterBlog() {
-      renderBlog();
-    }
+    function filterBlog() { renderBlog(); }
 
-    /* ============================================================
-       CASE STUDY RENDERING & SEARCH
-       ============================================================ */
     function renderCases() {
       const list = document.getElementById('case-list');
       const query = document.getElementById('case-search').value.trim().toLowerCase();
@@ -794,20 +722,10 @@
       `).join('');
     }
 
-    function filterCases() {
-      renderCases();
-    }
+    function filterCases() { renderCases(); }
 
-    /* ============================================================
-       STATS RENDERING
-       ============================================================ */
     function renderStats() {
-      const macroBody = document.getElementById('stats-macro-body');
-      const exchangeBody = document.getElementById('stats-exchange-body');
-      const fiscalBody = document.getElementById('stats-fiscal-body');
-
-      // Macro
-      macroBody.innerHTML = statsData.macro.map(r => `
+      document.getElementById('stats-macro-body').innerHTML = statsData.macro.map(r => `
         <tr>
           <td>${r.year}</td>
           <td>${r.inflation.toFixed(1)}</td>
@@ -817,8 +735,7 @@
         </tr>
       `).join('');
 
-      // Exchange
-      exchangeBody.innerHTML = statsData.exchange.map(r => `
+      document.getElementById('stats-exchange-body').innerHTML = statsData.exchange.map(r => `
         <tr>
           <td>${r.year}</td>
           <td>${r.usd.toFixed(2)}</td>
@@ -827,8 +744,7 @@
         </tr>
       `).join('');
 
-      // Fiscal
-      fiscalBody.innerHTML = statsData.fiscal.map(r => `
+      document.getElementById('stats-fiscal-body').innerHTML = statsData.fiscal.map(r => `
         <tr>
           <td>${r.year}</td>
           <td>${r.deficit.toFixed(1)}</td>
@@ -845,9 +761,6 @@
       btn.classList.add('active');
     }
 
-    /* ============================================================
-       UTILITIES
-       ============================================================ */
     function escapeHtml(str) {
       const div = document.createElement('div');
       div.textContent = str;
@@ -861,9 +774,6 @@
       return escaped.replace(regex, '<mark>$1</mark>');
     }
 
-    /* ============================================================
-       INITIALISE
-       ============================================================ */
     document.addEventListener('DOMContentLoaded', () => {
       renderBlog();
       renderCases();
